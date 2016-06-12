@@ -44,7 +44,10 @@ router.get('/g/:id',function (req,res,next) {
     {
       var $ = cheerio.load(html);
       var a = $('#thumbnail-container .thumb-container .gallerythumb img.lazyload');
-      var data =""
+      var data ="";
+      $('#bigcontainer').filter(function () {
+        data+=$(this);
+      });
       a.each(function (i,link) {
         var url = $(link).attr("data-src");
         console.log(url);
@@ -60,6 +63,37 @@ router.get('/g/:id',function (req,res,next) {
         data+=$(this);
       });
       res.render('index',{data:data});
+    }
+  });
+});
+router.get('/:a/:b', function(req, res, next) {
+  var a = req.params.a;
+  var b = req.params.b;
+  var url = 'http://nhentai.net/'+a+'/'+b;
+  request(url,function (error,response,html) {
+    if(!error)
+    {
+      var $ = cheerio.load(html);
+      $('#content').filter(function () {
+        var data = $(this);
+        res.render('index',{data:data});
+      })
+    }
+  });
+});
+router.get('/:a/:b/:c', function(req, res, next) {
+  var a = req.params.a;
+  var b = req.params.b;
+  var c = req.params.c;
+  var url = 'http://nhentai.net/'+a+'/'+b+'/'+c;
+  request(url,function (error,response,html) {
+    if(!error)
+    {
+      var $ = cheerio.load(html);
+      $('#content').filter(function () {
+        var data = $(this);
+        res.render('index',{data:data});
+      })
     }
   });
 });

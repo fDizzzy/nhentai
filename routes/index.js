@@ -69,7 +69,10 @@ router.get('/g/:id',function (req,res,next) {
 router.get('/:a/:b', function(req, res, next) {
   var a = req.params.a;
   var b = req.params.b;
-  var url = 'http://nhentai.net/'+a+'/'+b;
+  var page = req.param('page');
+  if(typeof page == 'undefined')
+      page="";
+  var url = 'http://nhentai.net/'+a+'/'+b+'?page='+page;
   request(url,function (error,response,html) {
     if(!error)
     {
@@ -85,7 +88,10 @@ router.get('/:a/:b/:c', function(req, res, next) {
   var a = req.params.a;
   var b = req.params.b;
   var c = req.params.c;
-  var url = 'http://nhentai.net/'+a+'/'+b+'/'+c;
+  var page = req.param('page');
+  if(typeof page == 'undefined')
+      page="";
+  var url = 'http://nhentai.net/'+a+'/'+b+'/'+c+'?page='+page;
   request(url,function (error,response,html) {
     if(!error)
     {

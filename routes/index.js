@@ -13,31 +13,23 @@ router.get('/', function(req, res, next) {
   request(url,function (error,response,html) {
     if(!error)
     {
+      var data="";
       var $ = cheerio.load(html);
+      $('nav').filter(function () {
+        data += $(this);
+      });
       $('#content').filter(function () {
-        var data = $(this);
-        res.render('index',{data:data});
-      })
-    }
-  });
-});
-router.get('/:abc', function(req, res, next) {
-  var page = req.params.abc;
-  var url = 'http://nhentai.net/'+abc;
-  request(url,function (error,response,html) {
-    if(!error)
-    {
-      var $ = cheerio.load(html);
-      $('#content').filter(function () {
-        var data = $(this);
+        data += $(this);
         res.render('index',{data:data});
       })
     }
   });
 });
 
+
 router.get('/g/:id',function (req,res,next) {
   var id = req.params.id;
+
   var url = 'http://nhentai.net/g/'+id;
   request(url,function (err,response,html) {
     if(!err)
@@ -45,6 +37,9 @@ router.get('/g/:id',function (req,res,next) {
       var $ = cheerio.load(html);
       var a = $('#thumbnail-container .thumb-container .gallerythumb img.lazyload');
       var data ="";
+      $('nav').filter(function () {
+        data += $(this);
+      });
       $('#bigcontainer').filter(function () {
         data+=$(this);
       });
@@ -66,6 +61,30 @@ router.get('/g/:id',function (req,res,next) {
     }
   });
 });
+router.get('/:abc', function(req, res, next) {
+  var page = req.params.abc;
+  var q = req.param('q');
+  if(typeof q == 'undefined')
+    q="";
+  else
+     q="?q="+q;
+  var url = 'http://nhentai.net/'+page+q;
+
+  request(url,function (error,response,html) {
+    if(!error)
+    {
+      var data="";
+      var $ = cheerio.load(html);
+      $('nav').filter(function () {
+        data += $(this);
+      });
+      $('#content').filter(function () {
+       data += $(this);
+        res.render('index',{data:data});
+      });
+    }
+  });
+});
 router.get('/:a/:b', function(req, res, next) {
   var a = req.params.a;
   var b = req.params.b;
@@ -76,11 +95,15 @@ router.get('/:a/:b', function(req, res, next) {
   request(url,function (error,response,html) {
     if(!error)
     {
+      var data="";
       var $ = cheerio.load(html);
+      $('nav').filter(function () {
+        data += $(this);
+      });
       $('#content').filter(function () {
-        var data = $(this);
+        data += $(this);
         res.render('index',{data:data});
-      })
+      });
     }
   });
 });
@@ -95,11 +118,15 @@ router.get('/:a/:b/:c', function(req, res, next) {
   request(url,function (error,response,html) {
     if(!error)
     {
+      var data="";
       var $ = cheerio.load(html);
+      $('nav').filter(function () {
+        data += $(this);
+      });
       $('#content').filter(function () {
-        var data = $(this);
+        data += $(this);
         res.render('index',{data:data});
-      })
+      });
     }
   });
 });

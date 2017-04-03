@@ -64,11 +64,8 @@ router.get('/', function(req, res, next) {
       var $ = cheerio.load(html);
       var data="";
       var header="";
-      var headers = $('head link');
-      headers.each(function (i,link) {
-        var url = $(link).attr("href");
-        header += '<link rel="stylesheet" href="'+url+'">';
-      });
+      header += '<link rel="stylesheet" href="/stylesheets/style.css">';
+      header+='<script src="/stylesheets/combined.js"></script>';
       var title = '';
       $('head title').filter(function () {
         title+=$(this);
@@ -96,11 +93,8 @@ router.get('/:a', function(req, res, next) {
     { var $ = cheerio.load(html);
       var data="";
       var header="";
-      var headers = $('head link');
-      headers.each(function (i,link) {
-        var url = $(link).attr("href");
-        header += '<link rel="stylesheet" href="'+url+'">';
-      });
+      header += '<link rel="stylesheet" href="/stylesheets/style.css">';
+      header+='<script src="/stylesheets/combined.js"></script>';
       var title = '';
       $('head title').filter(function () {
         title+=$(this);
@@ -126,11 +120,8 @@ router.get('/:a/:b', function(req, res, next) {
     { var $ = cheerio.load(html);
       var data="";
       var header="";
-      var headers = $('head link');
-      headers.each(function (i,link) {
-        var url = $(link).attr("href");
-        header += '<link rel="stylesheet" href="'+url+'">';
-      });
+      header += '<link rel="stylesheet" href="/stylesheets/style.css">';
+      header+='<script src="/stylesheets/combined.js"></script>';
       var title = '';
       $('head title').filter(function () {
         title+=$(this);
@@ -157,10 +148,8 @@ router.get('/:a/:b/:c', function(req, res, next) {
       var data="";
       var header="";
       var headers = $('head link');
-      headers.each(function (i,link) {
-        var url = $(link).attr("href");
-        header += '<link rel="stylesheet" href="'+url+'">';
-      });
+      header += '<link rel="stylesheet" href="/stylesheets/style.css">';
+      header+='<script src="/stylesheets/combined.js"></script>';
       var title = '';
       $('head title').filter(function () {
         title+=$(this);
@@ -187,10 +176,8 @@ router.get('/:a/:b/:c/:d', function(req, res, next) {
       var data="";
       var header="";
       var headers = $('head link');
-      headers.each(function (i,link) {
-        var url = $(link).attr("href");
-        header += '<link rel="stylesheet" href="'+url+'">';
-      });
+      header += '<link rel="stylesheet" href="/stylesheets/style.css">';
+      header+='<script src="/stylesheets/combined.js"></script>';
       var title = '';
       $('head title').filter(function () {
         title+=$(this);

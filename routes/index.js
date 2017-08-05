@@ -17,16 +17,7 @@ router.get('/g/:id',function (req,res,next) {
     {
       var $ = cheerio.load(html);
       var a = $('#thumbnail-container .thumb-container .gallerythumb img.lazyload');
-      var header="";
-      var headers = $('head link');
-      headers.each(function (i,link) {
-        var u = $(link).attr("href");
-        header += '<link rel="stylesheet" href="'+u+'">';
-      });
-      var title = '';
-      $('head title').filter(function () {
-        title+=$(this);
-      });
+      var header = $('head');
       var data ="";
       $('nav').filter(function () {
         data += $(this);
@@ -49,7 +40,7 @@ router.get('/g/:id',function (req,res,next) {
       $("#related-container").filter(function () {
         data+=$(this);
       });
-      res.render('index',{data:data,title:title,header:headers});
+      res.render('index',{data:data,header:header});
     }
   });
 });
@@ -63,13 +54,7 @@ router.get('/', function(req, res, next) {
     {
       var $ = cheerio.load(html);
       var data="";
-      var header="";
-      header += '<link rel="stylesheet" href="/stylesheets/style.css">';
-      header+='<script src="/stylesheets/combined.js"></script>';
-      var title = '';
-      $('head title').filter(function () {
-        title+=$(this);
-      });
+      var header = $('head');
       var $ = cheerio.load(html);
       $('nav').filter(function () {
         data += $(this);
@@ -77,7 +62,7 @@ router.get('/', function(req, res, next) {
       $('#content').filter(function () {
         data += $(this);
       });
-      res.render('index',{data:data,title:title,header:header});
+      res.render('index',{data:data,header:header});
     }
     else {
       res.render('index',{data:'ERROR',title:'ERROR',header:""});
@@ -92,13 +77,7 @@ router.get('/:a', function(req, res, next) {
     if(!error)
     { var $ = cheerio.load(html);
       var data="";
-      var header="";
-      header += '<link rel="stylesheet" href="/stylesheets/style.css">';
-      header+='<script src="/stylesheets/combined.js"></script>';
-      var title = '';
-      $('head title').filter(function () {
-        title+=$(this);
-      });
+      var header = $('head');
       var $ = cheerio.load(html);
       $('nav').filter(function () {
         data += $(this);
@@ -107,7 +86,7 @@ router.get('/:a', function(req, res, next) {
         data += $(this);
 
       });
-      res.render('index',{data:data,title:title,header:header});
+      res.render('index',{data:data,header:header});
     }
   });
 });
@@ -119,13 +98,7 @@ router.get('/:a/:b', function(req, res, next) {
     if(!error)
     { var $ = cheerio.load(html);
       var data="";
-      var header="";
-      header += '<link rel="stylesheet" href="/stylesheets/style.css">';
-      header+='<script src="/stylesheets/combined.js"></script>';
-      var title = '';
-      $('head title').filter(function () {
-        title+=$(this);
-      });
+      var header = $('head');
       var $ = cheerio.load(html);
       $('nav').filter(function () {
         data += $(this);
@@ -134,7 +107,7 @@ router.get('/:a/:b', function(req, res, next) {
         data += $(this);
 
       });
-      res.render('index',{data:data,title:title,header:header});
+      res.render('index',{data:data,header:header});
     }
   });
 });
@@ -146,14 +119,7 @@ router.get('/:a/:b/:c', function(req, res, next) {
     if(!error)
     { var $ = cheerio.load(html);
       var data="";
-      var header="";
-      var headers = $('head link');
-      header += '<link rel="stylesheet" href="/stylesheets/style.css">';
-      header+='<script src="/stylesheets/combined.js"></script>';
-      var title = '';
-      $('head title').filter(function () {
-        title+=$(this);
-      });
+      var header = $('head');
       var $ = cheerio.load(html);
       $('nav').filter(function () {
         data += $(this);
@@ -162,7 +128,7 @@ router.get('/:a/:b/:c', function(req, res, next) {
         data += $(this);
 
       });
-      res.render('index',{data:data,title:title,header:header});
+      res.render('index',{data:data,header:header});
     }
   });
 });
@@ -174,14 +140,7 @@ router.get('/:a/:b/:c/:d', function(req, res, next) {
     if(!error)
     { var $ = cheerio.load(html);
       var data="";
-      var header="";
-      var headers = $('head link');
-      header += '<link rel="stylesheet" href="/stylesheets/style.css">';
-      header+='<script src="/stylesheets/combined.js"></script>';
-      var title = '';
-      $('head title').filter(function () {
-        title+=$(this);
-      });
+      var header = $('head');
       var $ = cheerio.load(html);
       $('nav').filter(function () {
         data += $(this);
@@ -190,7 +149,7 @@ router.get('/:a/:b/:c/:d', function(req, res, next) {
         data += $(this);
 
       });
-      res.render('index',{data:data,title:title,header:header});
+      res.render('index',{data:data,header:header});
     }
   });
 });
